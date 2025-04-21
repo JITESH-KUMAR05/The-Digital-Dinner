@@ -26,6 +26,16 @@ app.use(express.json());
 app.use('/api/menu', menuRoutes);
 app.use('/api/orders', orderRoutes);
 
+// Add this debugging line to show all registered routes
+console.log('Registered routes:');
+app._router.stack.forEach(function(r) {
+  if (r.route && r.route.path) {
+    Object.keys(r.route.methods).forEach(method => {
+      console.log(`${method.toUpperCase()} ${r.route.path}`);
+    });
+  }
+});
+
 // Home route
 app.get('/', (req, res) => {
   res.send('Digital Diner API is running...');

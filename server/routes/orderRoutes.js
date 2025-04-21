@@ -6,6 +6,6 @@ const orderController = require('../controllers/orderController');
 router.post('/', orderController.createOrder);
 
 // Route to fetch orders based on user identifier (phone number)
-router.get('/:phoneNumber', orderController.getOrdersByPhoneNumber);
+router.get('/phone/:phoneNumber', orderController.getOrdersByPhoneNumber);
 
 module.exports = router;
