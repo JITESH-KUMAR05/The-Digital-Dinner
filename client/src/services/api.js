@@ -35,7 +35,7 @@ export const createOrder = async (orderData) => {
 // Fetch orders by phone number
 export const fetchOrdersByPhone = async (phoneNumber) => {
     try {
-        const response = await axios.get(`${API_BASE_URL}/orders`, {
+        const response = await axios.get(`${API_BASE_URL}/orders/phone/${phoneNumber}`, {
             params: { phone: phoneNumber },
         });
         return response.data;
