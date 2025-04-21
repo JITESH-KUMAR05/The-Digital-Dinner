@@ -31,13 +31,17 @@ const CheckoutForm = () => {
             clearCart();
             
             // Navigate to confirmation page
-            navigate('/order-confirmation', { 
-                state: { 
-                    order: response.order,
-                    customerName: name,
-                    customerPhone: phoneNumber
-                } 
-            });
+            navigate('/order-confirmation', {
+                state: {
+                  order: {
+                    id: response.order.id,
+                    items: items,
+                    totalPrice: totalPrice  // Make sure this is a number
+                  },
+                  customerName: name,
+                  customerPhone: phoneNumber
+                }
+              });
         } catch (err) {
             setError('Failed to place order. Please try again.');
         } finally {

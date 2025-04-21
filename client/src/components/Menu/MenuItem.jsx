@@ -1,23 +1,19 @@
 import React from 'react';
 import { useCart } from '../../context/CartContext';
-// Import a default placeholder image or create a component for it
-import defaultImage from '../../assets/placeholder.png'; // Create this file or adjust path as needed
 
 const MenuItem = ({ item }) => {
     const { addItem } = useCart();
     
-    // Default image source - use this directly instead of trying to load a 3rd party one
-    const fallbackImageSrc = defaultImage; 
+    // Use a data URL instead of importing an image file
+    const fallbackImageSrc = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23f1f1f1'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='24' fill='%23777777'%3ENo Image%3C/text%3E%3C/svg%3E";
     
     return (
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
             <div className="h-48 overflow-hidden">
-                {/* Use standard pattern for fallback images */}
                 <img 
                     src={item.imageUrl || fallbackImageSrc}
                     alt={item.name} 
                     className="w-full h-full object-cover"
-                    // Simple onError that doesn't cause infinite loops
                     onError={(e) => {
                         e.target.onerror = null; // Prevent infinite loop
                         e.target.src = fallbackImageSrc;

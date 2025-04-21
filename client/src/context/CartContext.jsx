@@ -73,7 +73,9 @@ export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, initialState);
   
   const addItem = (item) => {
-    dispatch({ type: 'ADD_ITEM', payload: item });
+    setTimeout(() => {
+        dispatch({ type: 'ADD_ITEM', payload: item });
+      }, 0);
   };
   
   const removeItem = (item) => {

@@ -24,7 +24,12 @@ const CartItem = ({ item }) => {
         </span>
         
         <button 
-          onClick={() => addItem(item)}
+          onClick={(e) =>{
+            e.preventDefault();
+            e.stopPropagation();
+            addItem(item)
+          } 
+        }
           className="px-3 py-1 bg-gray-200 rounded-r hover:bg-gray-300"
         >
           +
