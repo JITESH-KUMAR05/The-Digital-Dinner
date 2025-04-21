@@ -35,11 +35,15 @@ export const createOrder = async (orderData) => {
 // Fetch orders by phone number
 export const fetchOrdersByPhone = async (phoneNumber) => {
     try {
-        const response = await axios.get(`${API_BASE_URL}/orders`, {
-            params: { phone: phoneNumber },
-        });
+        const response = await axios.get(`${API_BASE_URL}/orders/phone/${phoneNumber}`);
         return response.data;
     } catch (error) {
         throw new Error('Error fetching orders');
     }
+};
+
+// If you need a generic fetchOrders function that OrderHistory.jsx is importing:
+export const fetchOrders = async (phoneNumber) => {
+    // This just calls the more specific function
+    return fetchOrdersByPhone(phoneNumber);
 };
