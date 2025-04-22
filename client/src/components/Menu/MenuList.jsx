@@ -33,9 +33,9 @@ const MenuList = () => {
     return (
         <div className="menu-list">
             {categories.map(category => (
-                <div key={category} className="mb-8">
-                    <h2 className="text-2xl font-bold mb-4 pb-2 border-b">{category}</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <section key={category} className="mb-12">
+                    <h2 className="text-3xl font-bold mb-6 border-b pb-2 text-gray-800">{category}</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                         {menuItems
                             .filter(item => item.category === category)
                             .map(item => (
@@ -43,7 +43,7 @@ const MenuList = () => {
                             ))
                         }
                     </div>
-                </div>
+                </section>
             ))}
         </div>
     );
