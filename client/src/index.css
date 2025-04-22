@@ -74,3 +74,8 @@ a:hover {
     text-align: center;
     margin: 20px 0;
 }
+
+
+.menu-list section {
+    scroll-margin-top: 80px;
+}
