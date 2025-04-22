@@ -1,85 +1,34 @@
 const mongoose = require('mongoose');
 
 const menuItemSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, 'Menu item name is required'],
-    trim: true
-  },
-  description: {
-    type: String,
-    required: [true, 'Description is required'],
-    trim: true
-  },
-  price: {
-    type: Number,
-    required: [true, 'Price is required'],
-    min: [0, 'Price cannot be negative']
-  },
+  name: { type: String, required: true },
+  description: { type: String, required: true },
+  price: { type: Number, required: true },
   category: {
     type: String,
-    required: [true, 'Category is required'],
-    enum: ['Appetizers', 'Main Courses', 'Sides', 'Desserts', 'Drinks', 'Specials']
+    required: true,
+    enum: ['Main Courses', 'Appetizers', 'Desserts', 'Drinks', 'Sides', 'Indian', 'Soups', 'Salads'], // Add 'Indian' here
   },
-  imageUrl: {
-    type: String,
-    default: ''  // Default empty, your MenuItem component handles fallback
-  },
+  imageUrl: { type: String },
   nutritionInfo: {
-    calories: Number,
-    protein: Number,
-    carbs: Number,
-    fat: Number,
-    allergens: [String]
+    calories: { type: Number, default: 0 },
+    protein: { type: Number, default: 0 },
+    carbs: { type: Number, default: 0 },
+    fat: { type: Number, default: 0 },
+    allergens: { type: [String], default: [] },
   },
-  ingredients: {
-    type: [String],
-    default: []
-  },
+  ingredients: { type: [String], default: [] },
   dietaryInfo: {
-    isVegetarian: {
-      type: Boolean,
-      default: false
-    },
-    isVegan: {
-      type: Boolean,
-      default: false
-    },
-    isGlutenFree: {
-      type: Boolean,
-      default: false
-    }
+    isVegetarian: { type: Boolean, default: false },
+    isVegan: { type: Boolean, default: false },
+    isGlutenFree: { type: Boolean, default: false },
   },
-  ratings: {
-    averageRating: {
-      type: Number,
-      default: 0,
-      min: 0,
-      max: 5
-    },
-    numberOfRatings: {
-      type: Number,
-      default: 0
-    }
-  },
-  isAvailable: {
-    type: Boolean,
-    default: true
-  },
-  isFeatured: {
-    type: Boolean,
-    default: false
-  },
-  preparationTime: {
-    type: Number,  // In minutes
-    default: 15
-  }
-}, {
-  timestamps: true  // Adds createdAt and updatedAt fields
+  isFeatured: { type: Boolean, default: false },
+  preparationTime: { type: Number, default: 15 },
+  isAvailable: { type: Boolean, default: true },
 });
 
-const MenuItem = mongoose.model('MenuItem', menuItemSchema);
-module.exports = MenuItem;
+module.exports = mongoose.model('MenuItem', menuItemSchema);
 
 const menuItems = [
   {
