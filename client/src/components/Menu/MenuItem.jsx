@@ -1,6 +1,5 @@
 import React from 'react';
 import { useCart } from '../../context/CartContext';
-// import noImage from '../../assets/no-image.png'; // Import your local image
 
 const MenuItem = ({ item }) => {
     const { addItem } = useCart();
